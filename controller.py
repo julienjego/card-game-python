@@ -2,16 +2,16 @@ from models import Player
 
 
 class Controller:
-    def __init__(self, deck):
+    def __init__(self, deck, view):
         # Modèles
         self.deck = deck
         self.players = []
 
         # Vue
-        self.view = None
+        self.view = view
 
     def get_players(self):
-        while len(self.players) < 5:
+        while len(self.players) < 2:
             name = self.view.prompt_for_players()
             if not name:
                 return
