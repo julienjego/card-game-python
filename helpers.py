@@ -65,8 +65,13 @@ class Card:
 
 
 class Player:
-    pass
+    def __init__(self, name):
+        self.name = name
+        self.card = Hand()
 
 
-class Hand:
-    pass
+class Hand(list):
+    def append(self, object):
+        if not isinstance(object, Card):
+            return ValueError("object must be card")
+        return super().append(object)
