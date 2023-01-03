@@ -7,7 +7,7 @@ class View:
 
     def prompt_for_flip_cards(self):
         print()
-        input("on retourne les cartes")
+        input("on retourne les cartes ?")
         return True
 
     def show_player_hand(self, name, hand):

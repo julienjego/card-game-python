@@ -60,7 +60,7 @@ class Controller:
             for player in self.players:
                 for card in player.hand:
                     card.is_visible = True
-            self.view.show_player_hand(player.name, player.hand)
+                self.view.show_player_hand(player.name, player.hand)
 
             self.view.show_winner(self.evaluate_game())
 

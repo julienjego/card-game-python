@@ -67,7 +67,7 @@ class Card:
 class Player:
     def __init__(self, name):
         self.name = name
-        self.card = Hand()
+        self.hand = Hand()
 
 
 class Hand(list):
