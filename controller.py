@@ -1,4 +1,4 @@
-from models import Player
+from models import CARD_COLOR, CARD_RANK, Player
 
 
 class Controller:
@@ -33,7 +33,19 @@ class Controller:
             player_card = player.hand[0]
             last_player_card = last_player.hand[0]
 
-            if player_card > last_player_card:
+            score = (
+                CARD_RANK.index(player_card.rank),
+                CARD_COLOR.index(player_card.color),
+            )
+            last_score = (
+                CARD_RANK.index(last_player_card.rank),
+                CARD_COLOR.index(last_player_card.color),
+            )
+
+            if score[0] == last_score[0]:
+                if score[1] > last_score[1]:
+                    best_candidate = player
+            elif score[0] > last_score[0]:
                 best_candidate = player
 
             last_player = player

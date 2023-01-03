@@ -46,8 +46,6 @@ class Card:
         self.color = color
         self.rank = rank
         self.is_visible = False
-        self.score_rank = CARD_RANK.index(self.rank)
-        self.score_color = CARD_COLOR.index(self.color)
 
     def __str__(self):
         # sorte de tostring
@@ -56,12 +54,6 @@ class Card:
     def __repr__(self):
         # sorte de toobject
         return str(self)
-
-    def __lt__(self, other):
-        if self.score_rank != other.score_rank:
-            return self.score_rank < other.score_rank
-
-        return self.score_color < other.score_color
 
 
 class Player:
