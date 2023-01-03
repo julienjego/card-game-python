@@ -45,7 +45,7 @@ class Card:
     def __init__(self, color, rank):
         self.color = color
         self.rank = rank
-        self.visible = False
+        self.is_visible = False
         self.score_rank = CARD_RANK.index(self.rank)
         self.score_color = CARD_COLOR.index(self.color)
 
