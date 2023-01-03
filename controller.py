@@ -1,31 +1,8 @@
 from models import CARD_COLOR, CARD_RANK, Player
 
 
-class Controller:
-    def __init__(self, deck, view):
-        # Modèles
-        self.deck = deck
-        self.players = []
-
-        # Vue
-        self.view = view
-
-    def get_players(self):
-        while len(self.players) < 2:
-            name = self.view.prompt_for_players()
-            if not name:
-                return
-            player = Player(name)
-            self.players.append(player)
-
-    def start_game(self):
-        self.deck.shuffle()
-        for player in self.players:
-            card = self.deck.draw_card()
-            if card:
-                player.hand.append(card)
-
-    def evaluate_game(self):
+class CheckerRankAndSuitIndex:
+    def check(self, players):
         last_player = self.players[0]
         best_candidate = self.players[0]
 
@@ -51,6 +28,35 @@ class Controller:
             last_player = player
 
         return best_candidate.name
+
+
+class Controller:
+    def __init__(self, deck, view, checker_strategy):
+        # Modèles
+        self.deck = deck
+        self.players = []
+
+        # Vue
+        self.view = view
+        self.checker_strategy = checker_strategy
+
+    def get_players(self):
+        while len(self.players) < 2:
+            name = self.view.prompt_for_players()
+            if not name:
+                return
+            player = Player(name)
+            self.players.append(player)
+
+    def start_game(self):
+        self.deck.shuffle()
+        for player in self.players:
+            card = self.deck.draw_card()
+            if card:
+                player.hand.append(card)
+
+    def evaluate_game(self):
+        self.checker_strategy.check(self.players)
 
     def rebuild_deck(self):
         for player in self.players:
